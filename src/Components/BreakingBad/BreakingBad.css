@@ -1,0 +1,44 @@
+.container3{
+    height: calc(100vh - 50px);
+    padding-top: 20px;
+    background-image: url(../../assets/breaking.png);
+    background-size: cover;
+    box-sizing: border-box;
+ 
+  
+}
+.breaking-bad-container {
+    background-color: rgb(11, 11, 91);
+    color: white;
+    font-family:  Arial, Helvetica, sans-serif;
+    width: 40%;
+    margin-left: 30%;
+    height: auto;
+    border-radius: 100px;
+    margin-top: 10%;
+    font-size: 20px;
+}
+.breaking-bad-container button {
+    background-color: hsl(120, 76%, 29%);
+    height: 25px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 7px;
+}
+@media (max-width: 767px){
+    .breaking-bad-container{
+        width: 100%;
+        margin-left: 0;
+        border-radius: 5px;
+    }
+}
+@media (min-width: 768px) and (max-width: 1217px){
+    .breaking-bad-container{
+        width: 60%;
+        margin-left: 20%;
+        border-radius: 20px;
+    }
+}
