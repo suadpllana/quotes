@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import Quotes from "./Components/Quotes/Quotes.jsx"
 import Programming from './Components/Programming/Programming.jsx';
 import BreakingBad from './Components/BreakingBad/BreakingBad.jsx';
@@ -10,10 +10,10 @@ function App() {
     <Router>
       <Nav />
       <Routes>
-        <Route path="/quotes" element={<Quotes />} />
-        <Route path="/quotes/programming" element={<Programming />} />
-        <Route path="/quotes/breakingbad" element={<BreakingBad />} />
-        <Route path="/quotes/stoic" element={<Stoic />} />
+        <Route path="home" element={<Quotes />} />
+        <Route path="/programming" element={<Programming />} />
+        <Route path="/breakingbad" element={<BreakingBad />} />
+        <Route path="/stoic" element={<Stoic />} />
       </Routes>
     </Router>
   );
