@@ -1,6 +1,7 @@
 .container2 {
     height: calc(100vh - 50px);
     background-image: url(../../assets/programming.png);
+    background-size: cover;
     padding-top: 20px;
     box-sizing: border-box;
 }
