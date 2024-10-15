@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Stoic.css"
 import { useState } from 'react';
-
+import logo from "../../assets/x.png"
 
 const Stoic = () => {
 
@@ -16,7 +16,13 @@ const Stoic = () => {
     setQuoteData(data)
   }
 
-
+  function tweet(){
+    if(quoteData){
+      window.open(`https://twitter.com/intent/tweet?text=${quoteData.text}%0A%0A-${quoteData.author}-`,
+        "Tweet Window", "width=600, height=400");
+    }
+    return
+  }
   return (
     <div className="container4">
       <div className="stoic-container">
@@ -26,6 +32,9 @@ const Stoic = () => {
         <p>-{quoteData.author}-</p>
         </> : <></>}
         <button onClick={generateQuote}>Generate Quote</button>
+        <button className="tweet-btn" onClick={tweet}>
+            <img className="logo" src={logo} alt=""/> Tweet
+          </button>
       </div>
     </div>
   )

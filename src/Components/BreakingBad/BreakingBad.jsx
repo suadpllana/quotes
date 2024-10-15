@@ -1,6 +1,7 @@
 import React from 'react'
 import "./BreakingBad.css"
 import { useState } from 'react';
+import logo from "../../assets/x.png"
 
 const BreakingBad = () => {
 
@@ -14,6 +15,14 @@ const BreakingBad = () => {
       setQuoteData(data)
     }
 
+    function tweet(){
+      if(quoteData){
+        window.open(`https://twitter.com/intent/tweet?text=${quoteData[0].quote}%0A%0A-${quoteData[0].author}-`,
+          "Tweet Window", "width=600, height=400");
+      }
+      return
+    }
+
   return (
     <div className="container3">
       <div className="breaking-bad-container">
@@ -24,6 +33,9 @@ const BreakingBad = () => {
         </> : <></>}
       
         <button onClick={generateQuote}>Generate Quote</button>
+        <button className="tweet-btn" onClick={tweet}>
+            <img className="logo" src={logo} alt=""/> Tweet
+          </button>
       </div>
     </div>
   )

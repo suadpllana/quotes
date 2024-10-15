@@ -2,6 +2,7 @@ import {useState , useRef} from "react"
 import React from 'react'
 import "./Quotes.css"
 import { categories } from "./categories"
+import logo from "../../assets/x.png"
 
 const Quotes = () => {
 
@@ -30,6 +31,14 @@ const Quotes = () => {
       console.error(error);
     }
     
+  }
+  function tweet(){
+    if(quoteData[0]){
+      window.open(`https://twitter.com/intent/tweet?text=${quoteData[0].text}%0A%0A-${quoteData[0].author}-`,
+        "Tweet Window", "width=600, height=400");
+    }
+      return
+ 
   }
  
  
@@ -61,6 +70,9 @@ const Quotes = () => {
     }
 
       <button onClick={generateQuote}>Generate Quote</button>
+      <button className="tweet-btn" onClick={tweet}>
+            <img className="logo" src={logo} alt=""/> Tweet
+          </button>
     </div>
     </div>
    

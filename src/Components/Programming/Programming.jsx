@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Programming.css"
 import { useState } from 'react';
-
+import logo from "../../assets/x.png"
 
 const Programming = () => {
 
@@ -12,6 +12,13 @@ const Programming = () => {
     const data = await response.json();
 
     setQuoteData(data)
+  }
+  function tweet(){
+    if(quoteData){
+      window.open(`https://twitter.com/intent/tweet?text=${quoteData.quote}%0A%0A-${quoteData.author}-`,
+        "Tweet Window", "width=600, height=400");
+    }
+    return
   }
 
 
@@ -26,6 +33,9 @@ const Programming = () => {
           </> : <></>}
          
           <button onClick={generateQuote}>Generate Quote</button>
+          <button className="tweet-btn" onClick={tweet}>
+            <img className="logo" src={logo} alt=""/> Tweet
+          </button>
           </div>
            
          </div>
