@@ -1,4 +1,4 @@
-import {useState , useRef} from "react"
+import {useState , useEffect, useRef} from "react"
 import React from 'react'
 import "./Quotes.css"
 import { categories } from "./categories"
@@ -8,10 +8,18 @@ const Quotes = () => {
 
 
   const [quoteData, setQuoteData] = useState([]) 
+  const [saveQuote , setSaveQuote] = useState(() => {
+    const savedQuotes = localStorage.getItem("quotesData")
+    return savedQuotes ? JSON.parse(savedQuotes) : []
+  })
+  useEffect(() => {
+    localStorage.setItem("quotesData", JSON.stringify(saveQuote))
+  } ,[saveQuote])
+
     const selectValue = useRef(null)
   const apiKey = import.meta.env.VITE_API_KEY
   async function generateQuote(){
-    
+      console.log(saveQuote)
     try {
     const url = `https://famous-quotes4.p.rapidapi.com/random?category=${selectValue.current.value}&count=1`;
     const options = {
@@ -24,7 +32,7 @@ const Quotes = () => {
     
       const response = await fetch(url, options);
       const result = await response.json();
-      console.log(result);
+   
       setQuoteData(result)
     } 
     catch (error) {
@@ -40,13 +48,52 @@ const Quotes = () => {
       return
  
   }
+  function saveQuoteFunction(){
+    if(!quoteData[0].text){
+      return
+    }
+    if(saveQuote.length >=5) {
+      alert("You cant add more quotes")
+      return
+    }
+    setSaveQuote((prev) => {
+    if(!prev.some((item) => item.quote === quoteData[0].text)) {
+      return [
+        ...prev ,
+        {
+          id: Math.random(),
+          quote: quoteData[0].text,
+          author: quoteData[0].author
+        }
+      ]
+    }
+    return prev
+    })
+  
+  }
  
- 
+ function deleteQuote(id){
+  const filteredQuotes = saveQuote.filter((quote) => quote.id !== id)
+  setSaveQuote(filteredQuotes)
+ }
 
 
   return (
     <div className="container">
     <h1>Quotes</h1>
+    <div className="savedQuotesContainer">
+     {saveQuote.length > 0 ? saveQuote.map((quote) => (
+      <div className="quote">
+      
+      <p> {quote.quote}</p>
+      <p>--{quote.author}--</p>
+      <button onClick={() => deleteQuote(quote.id)}>Delete Quote</button>
+      <hr />
+      
+      </div>
+     
+     )) : <p>No saved Quotes</p>}
+    </div>
     <p>100+ categories to choose from</p>
     <p>Select a category: </p>
     <select ref={selectValue} >
@@ -69,10 +116,14 @@ const Quotes = () => {
     
     }
 
-      <button onClick={generateQuote}>Generate Quote</button>
+    <div className="buttonContainer">
+    <button className="generateQuote" onClick={generateQuote}>Generate Quote</button>
       <button className="tweet-btn" onClick={tweet}>
             <img className="logo" src={logo} alt=""/> Tweet
           </button>
+          <button id="saveQuote" onClick={saveQuoteFunction}>Save quote</button>
+    </div>
+      
     </div>
     </div>
    
