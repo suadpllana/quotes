@@ -4,6 +4,12 @@ body{
   margin: 0;
 
 }
+.icon {
+  cursor: pointer;
+}
+.icon:hover{
+  opacity: 0.7;
+}
 .container{
   height: calc(100vh - 50px);
   background-color: tomato;

@@ -3,11 +3,13 @@ import React from 'react'
 import "./Quotes.css"
 import { categories } from "./categories"
 import logo from "../../assets/x.png"
-
+import { FaChevronDown } from "react-icons/fa";
+import { FaChevronUp } from "react-icons/fa";
 const Quotes = () => {
 
 
   const [quoteData, setQuoteData] = useState([]) 
+  const [ openSavedQuotes, setOpenSavedQuotes] = useState(false)
   const [saveQuote , setSaveQuote] = useState(() => {
     const savedQuotes = localStorage.getItem("quotesData")
     return savedQuotes ? JSON.parse(savedQuotes) : []
@@ -82,17 +84,23 @@ const Quotes = () => {
     <div className="container">
     <h1>Quotes</h1>
     <div className="savedQuotesContainer">
-     {saveQuote.length > 0 ? saveQuote.map((quote) => (
-      <div className="quote">
-      
-      <p> {quote.quote}</p>
-      <p>--{quote.author}--</p>
-      <button onClick={() => deleteQuote(quote.id)}>Delete Quote</button>
-      <hr />
-      
-      </div>
+    <h2>Saved Quotes  { openSavedQuotes ?  <FaChevronUp className="icon"  onClick={() => setOpenSavedQuotes(prev => !prev)}/> : <FaChevronDown className="icon"  onClick={() => setOpenSavedQuotes(prev => !prev)} />}  </h2>
+    {openSavedQuotes ? saveQuote.length > 0 ? saveQuote.map((quote) => (
+    
+
+    <div className="quote">
+  
+    <p> {quote.quote}</p>
+    <p>--{quote.author}--</p>
+    <button onClick={() => deleteQuote(quote.id)}>Delete Quote</button>
+    <hr />
+    
+    </div>
+  
+ 
+ 
+ ))  : <p>No quotes saved</p> : <></>}
      
-     )) : <p>No saved Quotes</p>}
     </div>
     <p>100+ categories to choose from</p>
     <p>Select a category: </p>
