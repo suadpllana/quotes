@@ -82,7 +82,7 @@ const Quotes = () => {
 
   return (
     <div className="container">
-    <h1>Quotes</h1>
+    <h1 className="quotesH1">Quotes</h1>
     <div className="savedQuotesContainer">
     <h2>Saved Quotes  { openSavedQuotes ?  <FaChevronUp className="icon"  onClick={() => setOpenSavedQuotes(prev => !prev)}/> : <FaChevronDown className="icon"  onClick={() => setOpenSavedQuotes(prev => !prev)} />}  </h2>
     {openSavedQuotes ? saveQuote.length > 0 ? saveQuote.map((quote) => (
