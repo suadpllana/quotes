@@ -54,10 +54,7 @@ const Quotes = () => {
     if(!quoteData[0].text){
       return
     }
-    if(saveQuote.length >=5) {
-      alert("You cant add more quotes")
-      return
-    }
+ 
     setSaveQuote((prev) => {
     if(!prev.some((item) => item.quote === quoteData[0].text)) {
       return [
@@ -69,6 +66,7 @@ const Quotes = () => {
         }
       ]
     }
+    alert("This quote is already saved")
     return prev
     })
   

@@ -22,8 +22,9 @@ width: 100%;
 width: 400px;
 background-color: black;
   position: absolute;
-  top: 3.5rem;
- 
+  top: 3rem;
+ max-height: 90vh;
+ overflow-y: scroll;
 
 }
 select{
@@ -147,6 +148,9 @@ select{
     .savedQuotesContainer{
       width: 90%;
       margin-left: 5%;
+    }
+    .quotesH1{
+      margin-top: 4rem;
     }
   }
   @media (min-width: 768px) and (max-width: 1217px){
