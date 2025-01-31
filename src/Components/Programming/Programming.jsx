@@ -1,12 +1,18 @@
 import React from 'react'
 import "./Programming.css"
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 import logo from "../../assets/x.png"
 
 const Programming = () => {
 
   const [quoteData , setQuoteData] = useState("")
 
+
+
+
+  useEffect(() =>{
+    generateQuote()
+  } ,[])
   async function generateQuote() {
     const response = await fetch("https://programming-quotesapi.vercel.app/api/random");
     const data = await response.json();

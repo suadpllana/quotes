@@ -1,13 +1,15 @@
 import React from 'react'
 import "./BreakingBad.css"
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import logo from "../../assets/x.png"
 
 const BreakingBad = () => {
 
   const [quoteData , setQuoteData] = useState("")
 
-
+  useEffect(() => {
+    generateQuote()
+  } ,[])
     async function generateQuote(){
       const response = await fetch("https://api.breakingbadquotes.xyz/v1/quotes");
       const data = await response.json();

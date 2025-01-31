@@ -17,7 +17,9 @@ const Quotes = () => {
   useEffect(() => {
     localStorage.setItem("quotesData", JSON.stringify(saveQuote))
   } ,[saveQuote])
-
+  useEffect(() => {
+generateQuote()
+  },[])
     const selectValue = useRef(null)
   const apiKey = import.meta.env.VITE_API_KEY
   async function generateQuote(){

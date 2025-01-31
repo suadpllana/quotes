@@ -1,12 +1,14 @@
 import React from 'react'
 import "./Stoic.css"
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import logo from "../../assets/x.png"
 
 const Stoic = () => {
 
   const [quoteData , setQuoteData] = useState("")
-
+ useEffect(() => {
+    generateQuote()
+  } ,[])
 
 
   async function generateQuote(){
